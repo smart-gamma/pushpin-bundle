@@ -2,7 +2,7 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Interfaces\Events;
 
-interface TextEventInterface
+interface TextEventInterface extends EventInterface
 {
     /**
      * @return string

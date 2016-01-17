@@ -5,6 +5,9 @@
     "require": {
         "fanout/gripcontrol": "^2.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
     "keywords" : [
         "pushpin bundle"
     ],
