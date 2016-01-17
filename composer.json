@@ -1,10 +1,13 @@
 {
     "name": "gamma/pushpin-bundle",
     "description": "Pushpin proxy integration for Symfony 2 applications",
-    "type": "bundle",
+    "type" : "symfony-bundle",
     "require": {
         "fanout/gripcontrol": "^2.0"
     },
+    "keywords" : [
+        "pushpin bundle"
+    ],
     "license": "MIT",
     "authors": [
         {
