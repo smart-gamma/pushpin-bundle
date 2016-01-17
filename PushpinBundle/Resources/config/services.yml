@@ -5,4 +5,4 @@ services:
     gamma_pushpin.pushpin_helper:
         class: %pushpin_helper_class%
         calls:
-            - [setPushpinControlURI, [%pushpin-control-uri%]]
+            - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
