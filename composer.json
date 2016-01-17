@@ -1,0 +1,20 @@
+{
+    "name": "gamma/pushpin-bundle",
+    "description": "Pushpin proxy integration for Symfony 2 applications",
+    "type": "bundle",
+    "require": {
+        "fanout/gripcontrol": "^2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stas Zozulja",
+            "email": "stas.z@smart-gamma.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Gamma\\Pushpin": "" }
+    },
+    "target-dir": "Gamma/Pushpin",
+    "minimum-stability": "dev"
+}
