@@ -1,6 +1,6 @@
 <?php
 
-namespace LiveLife\WebSocketBundle\Interfaces;
+namespace Gamma\Pushpin\PushpinBundle\Interfaces;
 
 interface WebSocketChannelInterface
 {
