@@ -1,6 +1,6 @@
 <?php
 
-namespace LiveLife\WebSocketBundle\Messages;
+namespace Gamma\Pushpin\PushpinBundle\Messages;
 
 use GripControl\WebSocketMessageFormat;
 
