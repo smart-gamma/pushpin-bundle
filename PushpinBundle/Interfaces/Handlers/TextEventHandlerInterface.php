@@ -2,7 +2,7 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Interfaces\Handlers;
 
-use Gamma\Pushpin\PushpinBundle\Interfaces\TextEventInterface;
+use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 
 interface TextEventHandlerInterface
 {

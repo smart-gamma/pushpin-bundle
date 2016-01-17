@@ -1,6 +1,6 @@
 <?php
 
-namespace Gamma\Pushpin\PushpinBundle\Interfaces;
+namespace Gamma\Pushpin\PushpinBundle\Interfaces\Events;
 
 interface TextEventInterface
 {
