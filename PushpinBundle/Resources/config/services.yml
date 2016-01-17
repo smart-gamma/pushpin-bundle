@@ -1,0 +1,8 @@
+parameters:
+    pushpin_helper_class: Gamma\Pushpin\PushpinBundle\Services\PushpinHelper
+
+services:
+    gamma_pushpin.pushpin_helper:
+        class: %pushpin_helper_class%
+        calls:
+            - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
