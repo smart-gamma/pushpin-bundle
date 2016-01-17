@@ -1,9 +1,8 @@
 <?php
 
-namespace LiveLife\WebSocketBundle\Services\EventHandlers\Base;
+namespace Gamma\Pushpin\PushpinBundle\Handlers\Base;
 
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractTextEvent;
-use Gamma\Pushpin\PushpinBundle\Handlers\Base\AbstractEventHandler;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Handlers\EventHandlerInterface;
 
 abstract class AbstractTextEventHandler extends AbstractEventHandler implements EventHandlerInterface

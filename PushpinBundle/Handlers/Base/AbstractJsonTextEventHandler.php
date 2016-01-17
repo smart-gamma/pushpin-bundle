@@ -1,12 +1,11 @@
 <?php
 
-namespace LiveLife\WebSocketBundle\Services\EventHandlers;
+namespace Gamma\Pushpin\PushpinBundle\Handlers\Base;
 
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonTextEvent;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Handlers\JsonEventHandlerInterface;
-use LiveLife\WebSocketBundle\Services\EventHandlers\Base\AbstractTextEventHandler;
 
-abstract class AbstractJsonTextEventHandler extends AbstractTextEventHandler implements  JsonEventHandlerInterface
+abstract class AbstractJsonTextEventHandler extends AbstractTextEventHandler implements JsonEventHandlerInterface
 {
     /**
      * {@inheritdoc}
