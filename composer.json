@@ -16,11 +16,10 @@
         "psr-0": { "Gamma\\Pushpin": "" }
     },
     "target-dir": "Gamma/Pushpin",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "extra" : {
         "branch-alias" : {
-            "stable": "master",
-            "dev" : "develop"
+            "dev-master": "0.1-dev"
         }
     }
 }
