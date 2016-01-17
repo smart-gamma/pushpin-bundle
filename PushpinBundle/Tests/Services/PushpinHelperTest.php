@@ -29,10 +29,11 @@ class PushpinHelperTest extends \PHPUnit_Framework_TestCase
      */
     public function testSubscribeToChannel()
     {
-        $webSocketSubscribeEvent = self::$instance->subscribeToChannel(self::$webSocketChannel);
+        $subscribeEvent = self::$instance->subscribeToChannel(self::$webSocketChannel);
 
-        static::assertEquals('TEXT', $webSocketSubscribeEvent->type);
-        static::assertEquals('c:{"channel":"test-channel","type":"subscribe"}', $webSocketSubscribeEvent->content);
+        static::assertInstanceOf('GripControl\WebSocketEvent', $subscribeEvent);
+        static::assertEquals('TEXT', $subscribeEvent->type);
+        static::assertEquals('c:{"channel":"test-channel","type":"subscribe"}', $subscribeEvent->content);
     }
 
     /**
@@ -40,9 +41,36 @@ class PushpinHelperTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnSubscribeFromChannel()
     {
-        $webSocketUnSubscribeEvent = self::$instance->unSubscribeFromChannel(self::$webSocketChannel);
+        $unSubscribeEvent = self::$instance->unSubscribeFromChannel(self::$webSocketChannel);
 
-        static::assertEquals('TEXT', $webSocketUnSubscribeEvent->type);
-        static::assertEquals('c:{"channel":"test-channel","type":"unsubscribe"}', $webSocketUnSubscribeEvent->content);
+        static::assertInstanceOf('GripControl\WebSocketEvent', $unSubscribeEvent);
+        static::assertEquals('TEXT', $unSubscribeEvent->type);
+        static::assertEquals('c:{"channel":"test-channel","type":"unsubscribe"}', $unSubscribeEvent->content);
+    }
+
+    /**
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\PushpinHelper::detachConnection
+     */
+    public function testDetachConnection()
+    {
+        $detachEvent = self::$instance->detachConnection();
+
+        static::assertInstanceOf('GripControl\WebSocketEvent', $detachEvent);
+        static::assertEquals('TEXT', $detachEvent->type);
+        static::assertEquals('c:{"type":"detach"}', $detachEvent->content);
+
+    }
+
+    /**
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\PushpinHelper::generateTextEvent
+     */
+    public function testGenerateTextEvent()
+    {
+        $textEvent = self::$instance->generateTextEvent('test text');
+
+        static::assertInstanceOf('GripControl\WebSocketEvent', $textEvent);
+        static::assertEquals('TEXT', $textEvent->type);
+        static::assertEquals('test text', $textEvent->content);
+
     }
 }
