@@ -4,10 +4,11 @@ namespace Gamma\Pushpin\PushpinBundle\Controller;
 
 use GripControl\GripControl;
 use Gamma\Pushpin\PushpinBundle\DTO\WebSocketEventsDTO;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GripController
+class GripController extends Controller
 {
     /**
      * @param Request $request

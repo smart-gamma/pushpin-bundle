@@ -3,7 +3,8 @@
     "description": "Pushpin proxy integration for Symfony 2 applications",
     "type" : "symfony-bundle",
     "require": {
-        "fanout/gripcontrol": "^2.0"
+        "fanout/gripcontrol": "^2.0",
+        "symfony/framework-bundle": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7"
