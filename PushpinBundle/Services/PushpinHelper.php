@@ -18,9 +18,18 @@ class PushpinHelper
      */
     public function setPushpinControlURI($pushpinURI)
     {
-        $this->gripPubControl = new GripPubControl(
-            GripControl::parse_grip_uri($pushpinURI)
+        $this->setGripPubControl(
+                new GripPubControl(GripControl::parse_grip_uri($pushpinURI)
+            )
         );
+    }
+
+    /**
+     * @param $gripPubControl
+     */
+    public function setGripPubControl($gripPubControl)
+    {
+        $this->gripPubControl = $gripPubControl;
     }
 
     /**
