@@ -26,12 +26,9 @@ class GripEventsHandler
     {
         if ($subType) {
             $this->handlers[$handler->getEventType()][$subType] = $handler;
-
-            return;
+        } else {
+            $this->handlers[$handler->getEventType()] = $handler;
         }
-        $this->handlers[$handler->getEventType()] = $handler;
-
-        return;
     }
 
     /**

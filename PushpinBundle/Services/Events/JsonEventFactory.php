@@ -3,6 +3,7 @@
 namespace Gamma\Pushpin\PushpinBundle\Services\Events;
 
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonEvent;
+use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 use GripControl\WebSocketEvent;
 
 class JsonEventFactory
@@ -70,6 +71,16 @@ class JsonEventFactory
      */
     private function resolveJsonEvent(WebSocketEvent $webSocketEvent)
     {
+        if ($webSocketEvent->type !== TextEventInterface::EVENT_TYPE) {
+            throw new \Exception(
+                sprintf(
+                    'Cannot parse event with type "%s". Expected type is "%s"',
+                    $webSocketEvent->type,
+                    TextEventInterface::EVENT_TYPE
+                )
+            );
+        }
+
         $eventName = $this->parser->getEventName($webSocketEvent);
         $className = sprintf('%s\%s', $this->baseNamespace,
                 $this->getEventClassByName($eventName)

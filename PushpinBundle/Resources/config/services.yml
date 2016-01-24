@@ -8,7 +8,7 @@ services:
             - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
 
     gamma_pushpin.event_serializer:
-        class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonTextEventSerializer
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventSerializer
         public: false
 
     gamma_pushpin.json_event_parser:
