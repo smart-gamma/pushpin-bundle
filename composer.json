@@ -4,7 +4,7 @@
     "type" : "symfony-bundle",
     "require": {
         "fanout/gripcontrol": "^2.0",
-        "symfony/framework-bundle": "^3.0",
+        "symfony/framework-bundle": "^2.7",
         "jms/serializer": "^1.1@dev"
     },
     "require-dev": {
