@@ -2,7 +2,7 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Handlers\Base;
 
-use Gamma\Pushpin\PushpinBundle\Interfaces\Events\EventInterface;
+use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractEvent;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Handlers\EventHandlerInterface;
 
 abstract class AbstractEventHandler implements EventHandlerInterface
@@ -10,16 +10,16 @@ abstract class AbstractEventHandler implements EventHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function eventSupported(EventInterface $event)
+    public function getEventType()
     {
-        return $event->getType() === static::$eventType;
+        return static::EVENT_TYPE;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getEventType()
+    public function eventSupported(AbstractEvent $event)
     {
-        return static::$eventType;
+        return $this->getEventType() === $event->getType();
     }
 }

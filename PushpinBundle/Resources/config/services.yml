@@ -6,3 +6,17 @@ services:
         class: %pushpin_helper_class%
         calls:
             - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
+
+    gamma_pushpin.event_serializer:
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonTextEventSerializer
+        public: false
+
+    gamma_pushpin.json_event_parser:
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser
+        public: false
+
+    gamma_pushpin.json_event_factory:
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventFactory
+        arguments:
+            parser: @gamma_pushpin.json_event_parser
+            serializer: @gamma_pushpin.event_serializer
