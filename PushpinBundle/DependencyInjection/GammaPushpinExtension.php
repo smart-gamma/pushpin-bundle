@@ -22,5 +22,27 @@ class GammaPushpinExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('handlers.yml');
+
+        $this->configJsonEventFactory($config, $container);
+    }
+
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    private function configJsonEventFactory(array $config, ContainerBuilder $container)
+    {
+        $baseNameSpace = $config['web_socket']['json_events']['base_namespace'];
+        $mappings = $config['web_socket']['json_events']['mappings'];
+
+        $jsonEventFactory = $container->getDefinition('gamma_pushpin.json_event_factory');
+
+        $jsonEventFactory->addMethodCall(
+            'configure',
+            [
+                $baseNameSpace,
+                $mappings,
+            ]
+        );
     }
 }
