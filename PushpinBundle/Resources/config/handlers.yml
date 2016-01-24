@@ -2,7 +2,11 @@ parameters:
     pushpin_open_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\OpenEventHandler
 
 services:
+
+    gamma_pushpin.grip.events_handler:
+        class: Gamma\Pushpin\PushpinBundle\Services\GripEventsHandler
+
     gamma_pushpin.event_handler.open:
         class: %pushpin_open_handler_class%
         tags:
-          -  { name: gamma.grip_event_handler, type: OPEN }
+          -  { name: gamma_pushpin.grip_event_handler }

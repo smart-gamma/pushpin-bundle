@@ -4,7 +4,7 @@ namespace Gamma\Pushpin\PushpinBundle\Events\Base;
 
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 
-abstract class AbstractTextEvent extends AbstractEvent implements TextEventInterface
+abstract class AbstractTextEvent extends AbstractSubTypedEvent implements TextEventInterface
 {
     /**
      * {@inheritdoc}

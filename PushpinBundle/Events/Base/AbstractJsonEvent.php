@@ -42,4 +42,12 @@ abstract class AbstractJsonEvent extends AbstractTextEvent
     {
         return $this->json;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSubType()
+    {
+        return $this->name;
+    }
 }

@@ -24,6 +24,7 @@ class GammaPushpinExtension extends Extension
         $loader->load('handlers.yml');
 
         $this->configJsonEventFactory($config, $container);
+        $container->addCompilerPass(new AddHandlersCompilePass());
     }
 
     /**

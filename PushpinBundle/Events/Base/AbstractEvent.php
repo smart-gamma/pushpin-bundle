@@ -19,4 +19,9 @@ abstract class AbstractEvent extends WebSocketEvent implements EventInterface
             throw new WrongEventException($this, static::getType());
         }
     }
+
+    /**
+     * @return boolean
+     */
+    abstract public function hasSubTypes();
 }

@@ -14,4 +14,12 @@ class OpenEvent extends AbstractEvent implements OpenEventInterface
     {
         return self::EVENT_TYPE;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasSubTypes()
+    {
+        return false;
+    }
 }
