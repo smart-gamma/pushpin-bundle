@@ -21,9 +21,11 @@ services:
             parser: @gamma_pushpin.json_event_parser
             serializer: @gamma_pushpin.json_event_serializer
         tags:
-          -  { name: gamma_pushpin.grip_event_factory, format: json }
+          -  { name: gamma_pushpin.grip_event_factory }
 
-    gamma_pushpin.json_events_converter:
-        class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\JsonEventsParamConverter
+    gamma_pushpin.converter.web_socket_events:
+        class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\WebSocketEventsConverter
         arguments:
             factory: @gamma_pushpin.json_event_factory
+        tags:
+            - { name: request.param_converter, priority: 2, converter: gamma.web_socket.events }

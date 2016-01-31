@@ -74,13 +74,20 @@ class JsonEventFactory implements TextEventFactoryInterface
         return $resolved;
     }
 
+
     /**
      * @param $eventName
-     * @return string
+     * @throws \RuntimeException
      */
     private function getClassByEventName($eventName)
     {
-        return $this->events[$eventName];
+        if (isset($this->events[$eventName]['class'])) {
+            return $this->events[$eventName]['class'];
+        }
+
+        throw new \RuntimeException(
+            sprintf('Undefined WebSocket event "%s"', $eventName)
+        );
     }
 
     /**
@@ -88,7 +95,7 @@ class JsonEventFactory implements TextEventFactoryInterface
      *
      * @return AbstractJsonEvent
      *
-     * @throws \Exception
+     * @throws \RuntimeException
      */
     private function resolveJsonEvent(WebSocketEvent $webSocketEvent)
     {
@@ -104,8 +111,8 @@ class JsonEventFactory implements TextEventFactoryInterface
 
         $eventName = $this->parser->getEventName($webSocketEvent);
         $className = sprintf('%s\%s', $this->baseNamespace,
-                $this->getClassByEventName($eventName)
-            );
+            $this->getClassByEventName($eventName)
+        );
 
         if (class_exists($className)) {
             $jsonEvent = new $className(
