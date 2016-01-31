@@ -74,9 +74,13 @@ class JsonEventFactory implements TextEventFactoryInterface
         return $resolved;
     }
 
-    private function getEventClassByName($name)
+    /**
+     * @param $eventName
+     * @return string
+     */
+    private function getClassByEventName($eventName)
     {
-        return $this->events[$name];
+        return $this->events[$eventName];
     }
 
     /**
@@ -89,7 +93,7 @@ class JsonEventFactory implements TextEventFactoryInterface
     private function resolveJsonEvent(WebSocketEvent $webSocketEvent)
     {
         if ($webSocketEvent->type !== TextEventInterface::EVENT_TYPE) {
-            throw new \Exception(
+            throw new \RuntimeException(
                 sprintf(
                     'Cannot parse event with type "%s". Expected type is "%s"',
                     $webSocketEvent->type,
@@ -100,7 +104,7 @@ class JsonEventFactory implements TextEventFactoryInterface
 
         $eventName = $this->parser->getEventName($webSocketEvent);
         $className = sprintf('%s\%s', $this->baseNamespace,
-                $this->getEventClassByName($eventName)
+                $this->getClassByEventName($eventName)
             );
 
         if (class_exists($className)) {
@@ -112,6 +116,6 @@ class JsonEventFactory implements TextEventFactoryInterface
             return $this->serializer->deserialize($jsonEvent);
         }
 
-        throw new \Exception(sprintf('Class "%s" not exists', $className));
+        throw new \RuntimeException(sprintf('Class "%s" not exists', $className));
     }
 }

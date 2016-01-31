@@ -46,6 +46,10 @@ class GripEventsFactory implements TextEventFactoryInterface
      */
     public function getEvent(WebSocketEvent $event, $format = null)
     {
+        if (is_null($format)) {
+            throw new \RuntimeException('Format cannot be null');
+        }
+
         $this->getFactoryByFormat($format)
             ->getEvent($event)
         ;
