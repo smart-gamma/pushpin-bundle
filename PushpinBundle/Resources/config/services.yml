@@ -22,3 +22,8 @@ services:
             serializer: @gamma_pushpin.json_event_serializer
         tags:
           -  { name: gamma_pushpin.grip_event_factory, format: json }
+
+    gamma_pushpin.json_events_converter:
+        class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\JsonEventsParamConverter
+        arguments:
+            factory: @gamma_pushpin.json_event_factory
