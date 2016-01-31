@@ -26,7 +26,7 @@ class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
     {
         self::$instance->configure(
             'Gamma\Pushpin\PushpinBundle\Tests\Utils\Events',
-            ['testAction' => 'SimpleJsonEvent']
+                ['testAction' => ['class' => 'SimpleJsonEvent']]
             );
     }
 
@@ -49,7 +49,6 @@ class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
         );
         $events = self::$instance->getJsonEvents([$event]);
         $deSerialized = $events[0];
-
         static::assertInstanceOf('Gamma\Pushpin\PushpinBundle\Tests\Utils\Events\SimpleJsonEvent', $deSerialized);
         static::assertEquals('test string', $deSerialized->string);
         static::assertEquals(true, $deSerialized->bool);

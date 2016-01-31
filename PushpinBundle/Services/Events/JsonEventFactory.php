@@ -6,9 +6,11 @@ use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonEvent;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\TextEventFactoryInterface;
 use GripControl\WebSocketEvent;
+use Psr\Log\LoggerAwareTrait;
 
 class JsonEventFactory implements TextEventFactoryInterface
 {
+
     private $baseNamespace = '';
 
     private $events = [];
