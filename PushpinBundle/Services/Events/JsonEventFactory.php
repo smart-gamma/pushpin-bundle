@@ -4,9 +4,10 @@ namespace Gamma\Pushpin\PushpinBundle\Services\Events;
 
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonEvent;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
+use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\TextEventFactoryInterface;
 use GripControl\WebSocketEvent;
 
-class JsonEventFactory
+class JsonEventFactory implements TextEventFactoryInterface
 {
     private $baseNamespace = '';
 
@@ -30,6 +31,22 @@ class JsonEventFactory
     {
         $this->baseNamespace = $baseNamespace;
         $this->events = $events;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFormat()
+    {
+        return 'json';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEvent(WebSocketEvent $event, $format = null)
+    {
+        return $this->resolveJsonEvent($event);
     }
 
     /**

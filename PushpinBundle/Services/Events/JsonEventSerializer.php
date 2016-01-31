@@ -2,7 +2,6 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Services\Events;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonEvent;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -19,9 +18,6 @@ class JsonEventSerializer
     public function __construct()
     {
         $this->serializer = SerializerBuilder::create()->build();
-        AnnotationRegistry::registerFile(
-            __DIR__.'/../../../vendor/jms/serializer/src/JMS/Serializer/Annotation/Type.php'
-        );
     }
 
     /**

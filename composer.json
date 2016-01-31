@@ -21,7 +21,10 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Gamma\\Pushpin": "" }
+        "psr-0": { "Gamma\\Pushpin": "" },
+        "files": [
+            "vendor/jms/serializer/src/JMS/Serializer/Annotation/Type.php"
+        ]
     },
     "target-dir": "Gamma/Pushpin",
     "minimum-stability": "dev",

@@ -7,7 +7,7 @@ services:
         calls:
             - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
 
-    gamma_pushpin.event_serializer:
+    gamma_pushpin.json_event_serializer:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventSerializer
         public: false
 
@@ -19,4 +19,6 @@ services:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventFactory
         arguments:
             parser: @gamma_pushpin.json_event_parser
-            serializer: @gamma_pushpin.event_serializer
+            serializer: @gamma_pushpin.json_event_serializer
+        tags:
+          -  { name: gamma_pushpin.grip_event_factory, format: json }
