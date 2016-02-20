@@ -4,7 +4,7 @@ namespace Gamma\Pushpin\PushpinBundle\Request\ParamConverter;
 
 use Gamma\Pushpin\PushpinBundle\DTO\WebSocketEventsDTO;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
-use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\TextEventFactoryInterface;
+use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\EventFactoryInterface;
 use GripControl\GripControl;
 use GripControl\WebSocketEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -21,14 +21,14 @@ class WebSocketEventsConverter implements ParamConverterInterface
     ];
 
     /**
-     * @var TextEventFactoryInterface
+     * @var EventFactoryInterface
      */
     private $factory;
 
     /**
-     * @param TextEventFactoryInterface $eventFactory
+     * @param EventFactoryInterface $eventFactory
      */
-    public function __construct(TextEventFactoryInterface $eventFactory)
+    public function __construct(EventFactoryInterface $eventFactory)
     {
         $this->factory = $eventFactory;
     }

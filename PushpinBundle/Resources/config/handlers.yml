@@ -2,7 +2,6 @@ parameters:
     pushpin_open_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\OpenEventHandler
 
 services:
-
     gamma_pushpin.grip.events_handler:
         class: Gamma\Pushpin\PushpinBundle\Services\GripEventsHandler
 
@@ -10,6 +9,3 @@ services:
         class: %pushpin_open_handler_class%
         tags:
           -  { name: gamma_pushpin.grip_event_handler }
-
-    gamma_pushpin.grip.events_factory:
-        class: Gamma\Pushpin\PushpinBundle\Services\GripEventsFactory

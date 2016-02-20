@@ -2,20 +2,19 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Tests\Services\Events;
 
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventSerializer;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventSerializer;
 use Gamma\Pushpin\PushpinBundle\Tests\Utils\Events\SimpleJsonEvent;
-use GripControl\WebSocketEvent;
 
 class JsonEventSerializerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var JsonEventSerializer
+     * @var EventSerializer
      */
     private static $instance;
 
     public static function setUpBeforeClass()
     {
-        self::$instance = new JsonEventSerializer();
+        self::$instance = new EventSerializer();
     }
 
     public function testDeserialize()

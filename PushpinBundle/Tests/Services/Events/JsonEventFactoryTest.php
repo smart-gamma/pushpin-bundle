@@ -2,23 +2,23 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Tests\Services\Events;
 
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventFactory;
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser;
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventSerializer;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventSerializer;
 use GripControl\WebSocketEvent;
 
 class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var JsonEventFactory
+     * @var EventFactory
      */
     private static $instance;
 
     public static function setUpBeforeClass()
     {
-        self::$instance = new JsonEventFactory(
-            new JsonEventParser(),
-            new JsonEventSerializer()
+        self::$instance = new EventFactory(
+            new EventParser(),
+            new EventSerializer()
         );
     }
 
@@ -31,7 +31,7 @@ class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventFactory::getJsonEvents
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory::getEvent
      */
     public function testGetJsonEvents()
     {
@@ -47,13 +47,13 @@ class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
                 }
             }'
         );
-        $events = self::$instance->getJsonEvents([$event]);
-        $deSerialized = $events[0];
-        static::assertInstanceOf('Gamma\Pushpin\PushpinBundle\Tests\Utils\Events\SimpleJsonEvent', $deSerialized);
-        static::assertEquals('test string', $deSerialized->string);
-        static::assertEquals(true, $deSerialized->bool);
-        static::assertEquals(150, $deSerialized->int);
-        static::assertEquals(150.9999, $deSerialized->float);
-        static::assertEquals(['key' => 'value'], $deSerialized->array);
+        $jsonEvent = self::$instance->getEvent($event);
+
+        static::assertInstanceOf('Gamma\Pushpin\PushpinBundle\Tests\Utils\Events\SimpleJsonEvent', $jsonEvent);
+        static::assertEquals('test string', $jsonEvent->string);
+        static::assertEquals(true, $jsonEvent->bool);
+        static::assertEquals(150, $jsonEvent->int);
+        static::assertEquals(150.9999, $jsonEvent->float);
+        static::assertEquals(['key' => 'value'], $jsonEvent->array);
     }
 }

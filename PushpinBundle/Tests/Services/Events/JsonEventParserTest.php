@@ -2,13 +2,13 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Tests\Services\Events;
 
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser;
 use GripControl\WebSocketEvent;
 
 class JsonEventParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var JsonEventParser
+     * @var EventParser
      */
     private static $instance;
 
@@ -19,7 +19,7 @@ class JsonEventParserTest extends \PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$instance = new JsonEventParser();
+        self::$instance = new EventParser();
         self::$event = new WebSocketEvent(
             'TEXT',
             'testAction:{
@@ -35,7 +35,7 @@ class JsonEventParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser::getEventName
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser::getEventName
      */
     public function testGetEventName()
     {
@@ -43,7 +43,7 @@ class JsonEventParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser::getEventJson
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser::getEventJson
      */
     public function testGetEventJson()
     {

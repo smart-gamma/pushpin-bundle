@@ -2,7 +2,7 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Events\Base;
 
-use Gamma\Pushpin\PushpinBundle\Services\Events\JsonEventParser;
+use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser;
 
 abstract class AbstractJsonEvent extends AbstractTextEvent
 {
@@ -23,8 +23,8 @@ abstract class AbstractJsonEvent extends AbstractTextEvent
     {
         parent::__construct($type, $content);
 
-        $this->name = JsonEventParser::getEventName($this);
-        $this->json = JsonEventParser::getEventJson($this);
+        $this->name = EventParser::getEventName($this);
+        $this->json = EventParser::getEventJson($this);
     }
 
     /**

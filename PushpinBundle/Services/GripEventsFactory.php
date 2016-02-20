@@ -2,35 +2,40 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Services;
 
-use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
-use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\TextEventFactoryInterface;
+use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\EventFactoryInterface;
 use GripControl\WebSocketEvent;
 
-class GripEventsFactory implements TextEventFactoryInterface
+class GripEventsFactory implements EventFactoryInterface
 {
     /**
      * @var array
      */
-    private $factories;
+    private $factories = [];
 
-    public function addFactory(TextEventFactoryInterface $factory)
+    /**
+     * @param EventFactoryInterface $factory
+     */
+    public function addFactory(EventFactoryInterface $factory)
     {
         $this->factories[$factory->getFormat()] = $factory;
     }
 
     /**
-     * @param string $format Text event format e.g. 'json'
-     *
-     * @return TextEventFactoryInterface
+     * {@inheritdoc}
      */
-    private function getFactoryByFormat($format)
+    public function getEvent(WebSocketEvent $webSocketEvent, $format = null)
     {
-        if (array_key_exists($format, $this->factories)) {
-            return $this->factories[$format];
-        }
-        throw new \RuntimeException(
-            sprintf('Unknown event format "%s"', $format)
-        );
+        return $this->getFactory($format)->getEvent($webSocketEvent, $format);
+    }
+
+    /**
+     * @param $format
+     *
+     * @return EventFactoryInterface
+     */
+    private function getFactory($format)
+    {
+        return $this->factories[$format];
     }
 
     /**
@@ -38,20 +43,5 @@ class GripEventsFactory implements TextEventFactoryInterface
      */
     public function getFormat()
     {
-        return TextEventInterface::EVENT_TYPE;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEvent(WebSocketEvent $event, $format = null)
-    {
-        if (is_null($format)) {
-            throw new \RuntimeException('Format cannot be null');
-        }
-
-        $this->getFactoryByFormat($format)
-            ->getEvent($event)
-        ;
     }
 }
