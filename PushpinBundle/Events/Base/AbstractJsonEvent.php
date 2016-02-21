@@ -36,6 +36,18 @@ abstract class AbstractJsonEvent extends AbstractTextEvent
     }
 
     /**
+     * @param $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getJson()

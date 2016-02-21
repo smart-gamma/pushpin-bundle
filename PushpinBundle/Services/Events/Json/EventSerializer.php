@@ -46,6 +46,7 @@ class EventSerializer
 
         $deSerialized->type = $event->type;
         $deSerialized->content = $event->content;
+        $deSerialized->setName($event->getName());
 
         return $deSerialized;
     }

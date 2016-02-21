@@ -12,10 +12,10 @@ interface EventFactoryInterface
     public function getFormat();
 
     /**
-     * @param WebSocketEvent $event
+     * @param WebSocketEvent $webSocketEvent
      * @param null           $format
      *
      * @return mixed
      */
-    public function getEvent(WebSocketEvent $event, $format = null);
+    public function getEvent(WebSocketEvent $webSocketEvent, $format = null);
 }

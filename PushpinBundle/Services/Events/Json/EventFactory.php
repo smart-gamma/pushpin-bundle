@@ -6,11 +6,9 @@ use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractJsonEvent;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\EventFactoryInterface;
 use GripControl\WebSocketEvent;
-use Psr\Log\LoggerAwareTrait;
 
 class EventFactory implements EventFactoryInterface
 {
-
     private $baseNamespace = '';
 
     private $events = [];
@@ -61,9 +59,9 @@ class EventFactory implements EventFactoryInterface
         $this->serializer = $serializer;
     }
 
-
     /**
      * @param $eventName
+     *
      * @throws \RuntimeException
      */
     private function getClassByEventName($eventName)
@@ -107,7 +105,9 @@ class EventFactory implements EventFactoryInterface
                 $webSocketEvent->content
             );
 
-            return $this->serializer->deserialize($event);
+            $deSerialized = $this->serializer->deserialize($event);
+
+            return $deSerialized;
         }
 
         throw new \RuntimeException(sprintf('Class "%s" not exists', $className));

@@ -2,11 +2,12 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Services\Factories;
 
+use Gamma\Pushpin\PushpinBundle\Exceptions\Factory\UnsupportedEventTypeException;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\TextEventInterface;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Factory\EventFactoryInterface;
 use GripControl\WebSocketEvent;
 
-class TextEventsFactory implements EventFactoryInterface
+class TextEventFactory implements EventFactoryInterface
 {
     /**
      * @var array
@@ -47,14 +48,18 @@ class TextEventsFactory implements EventFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getEvent(WebSocketEvent $event, $format = null)
+    public function getEvent(WebSocketEvent $webSocketEvent, $format = null)
     {
         if (is_null($format)) {
             throw new \RuntimeException('Format cannot be null');
         }
 
-        $this->getFactoryByFormat($format)
-            ->getEvent($event)
-        ;
+        if ($webSocketEvent->type !== TextEventInterface::EVENT_TYPE) {
+            throw new UnsupportedEventTypeException($this, $webSocketEvent);
+        }
+
+        $factory = $this->getFactoryByFormat($format);
+
+        return $factory->getEvent($webSocketEvent);
     }
 }

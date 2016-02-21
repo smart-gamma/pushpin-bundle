@@ -2,17 +2,36 @@ parameters:
     pushpin_helper_class: Gamma\Pushpin\PushpinBundle\Services\PushpinHelper
 
 services:
-    gamma_pushpin.pushpin_helper:
+    gamma.pushpin.pushpin_helper:
         class: %pushpin_helper_class%
         calls:
             - [setPushpinControlURI, [%gamma.pushpin.control_uri%]]
 
-    gamma_pushpin.grip.events_factory:
+    gamma.pushpin.grip.events_factory:
         class: Gamma\Pushpin\PushpinBundle\Services\GripEventsFactory
+        arguments:
+            logger: @logger
+        tags:
+            - { name: monolog.logger, channel: websocket }
 
-    gamma_pushpin.converter.web_socket_events:
+    gamma.pushpin.grip.text_event_factory:
+        class: Gamma\Pushpin\PushpinBundle\Services\Factories\TextEventFactory
+        arguments:
+            logger: @logger
+        calls:
+            - [addFactory, [@gamma.pushpin.json_event_factory]]
+        tags:
+            - { name: gamma.pushpin.grip_event_factory }
+            - { name: monolog.logger, channel: websocket }
+
+    gamma.pushpin.grip.open_events_factory:
+        class: Gamma\Pushpin\PushpinBundle\Services\Factories\OpenEventFactory
+        tags:
+            - { name: gamma.pushpin.grip_event_factory }
+
+    gamma.pushpin.converter.web_socket_events:
         class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\WebSocketEventsConverter
         arguments:
-            factory: @gamma_pushpin.json_event_factory
+            factory: @gamma.pushpin.grip.events_factory
         tags:
             - { name: request.param_converter, priority: 2, converter: gamma.web_socket.events }

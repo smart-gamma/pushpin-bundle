@@ -16,7 +16,7 @@ class WebSocketEventsConverter implements ParamConverterInterface
     /**
      * @var array
      */
-    private $supportedFormats = [
+    private $supportedTextFormats = [
         'json',
     ];
 
@@ -59,7 +59,7 @@ class WebSocketEventsConverter implements ParamConverterInterface
     {
         $supports =
             array_key_exists('format', $configuration->getOptions()) &&
-            in_array($configuration->getOptions()['format'], $this->supportedFormats) &&
+            in_array($configuration->getOptions()['format'], $this->supportedTextFormats) &&
             $configuration->getClass() === 'Gamma\Pushpin\PushpinBundle\DTO\WebSocketEventsDTO'
         ;
 
@@ -78,6 +78,8 @@ class WebSocketEventsConverter implements ParamConverterInterface
         foreach ($dto->webSocketEvents as $key => $event) {
             if ($event->type ===  TextEventInterface::EVENT_TYPE) {
                 $dto->webSocketEvents[$key] = $this->factory->getEvent($event, $format);
+            } else {
+                $dto->webSocketEvents[$key] = $this->factory->getEvent($event);
             }
         }
 

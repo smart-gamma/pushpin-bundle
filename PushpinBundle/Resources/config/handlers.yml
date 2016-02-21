@@ -2,10 +2,14 @@ parameters:
     pushpin_open_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\OpenEventHandler
 
 services:
-    gamma_pushpin.grip.events_handler:
+    gamma.pushpin.grip.events_handler:
         class: Gamma\Pushpin\PushpinBundle\Services\GripEventsHandler
+        arguments:
+            logger: @logger
+        tags:
+            - { name: monolog.logger, channel: websocket }
 
-    gamma_pushpin.event_handler.open:
+    gamma.pushpin.event_handler.open:
         class: %pushpin_open_handler_class%
         tags:
-          -  { name: gamma_pushpin.grip_event_handler }
+          -  { name: gamma.pushpin.grip_event_handler }

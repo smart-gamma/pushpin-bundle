@@ -17,6 +17,9 @@ class JsonEventSerializerTest extends \PHPUnit_Framework_TestCase
         self::$instance = new EventSerializer();
     }
 
+    /**
+     * @covers \Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventSerializer::deserialize()
+     */
     public function testDeserialize()
     {
         $event = new SimpleJsonEvent(

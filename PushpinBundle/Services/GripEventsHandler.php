@@ -5,17 +5,23 @@ namespace Gamma\Pushpin\PushpinBundle\Services;
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractEvent;
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractSubTypedEvent;
 use Gamma\Pushpin\PushpinBundle\Handlers\Base\AbstractEventHandler;
+use Psr\Log\LoggerInterface;
 
 class GripEventsHandler
 {
     /**
      * @var array
      */
-    protected $handlers;
+    protected $handlers = [];
 
-    public function __construct()
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
     {
-        $this->handlers = [];
+        $this->logger = $logger;
     }
 
     /**
@@ -24,6 +30,12 @@ class GripEventsHandler
      */
     public function addHandler(AbstractEventHandler $handler, $subType = null)
     {
+
+        $this->logger->info(sprintf(
+            '%s: handler:%s, subtype:%s',
+            __FUNCTION__, get_class($handler), $subType
+        ));
+
         if ($subType) {
             $this->handlers[$handler->getEventType()][$subType] = $handler;
         } else {
@@ -51,6 +63,11 @@ class GripEventsHandler
     private function resolveHandler(AbstractEvent $event)
     {
         if ($event->hasSubTypes() && $event instanceof AbstractSubTypedEvent) {
+            $this->logger->info(sprintf(
+                '%s: event:%s, subtype:%s',
+                __FUNCTION__, get_class($event), $event->getName()
+            ));
+
             return $this->handlers[$event->getType()][$event->getSubType()];
         }
 

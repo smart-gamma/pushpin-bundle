@@ -1,16 +1,18 @@
 services:
-    gamma_pushpin.json_event_serializer:
+    gamma.pushpin.json_event_serializer:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventSerializer
         public: false
 
-    gamma_pushpin.json_event_parser:
+    gamma.pushpin.json_event_parser:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser
         public: false
 
-    gamma_pushpin.json_event_factory:
+    gamma.pushpin.json_event_factory:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory
+        public: false
         arguments:
-            parser: @gamma_pushpin.json_event_parser
-            serializer: @gamma_pushpin.json_event_serializer
+            parser: @gamma.pushpin.json_event_parser
+            serializer: @gamma.pushpin.json_event_serializer
+            logger: @logger
         tags:
-          -  { name: gamma_pushpin.grip_event_factory }
+            - { name: monolog.logger, channel: websocket }

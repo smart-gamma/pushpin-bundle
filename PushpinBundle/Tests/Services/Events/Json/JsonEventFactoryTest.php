@@ -1,6 +1,6 @@
 <?php
 
-namespace Gamma\Pushpin\PushpinBundle\Tests\Services\Events;
+namespace Gamma\Pushpin\PushpinBundle\Tests\Services\Events\Json;
 
 use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory;
 use Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser;
@@ -50,10 +50,12 @@ class JsonEventFactoryTest extends \PHPUnit_Framework_TestCase
         $jsonEvent = self::$instance->getEvent($event);
 
         static::assertInstanceOf('Gamma\Pushpin\PushpinBundle\Tests\Utils\Events\SimpleJsonEvent', $jsonEvent);
+        static::assertEquals('testAction', $jsonEvent->getName());
         static::assertEquals('test string', $jsonEvent->string);
         static::assertEquals(true, $jsonEvent->bool);
         static::assertEquals(150, $jsonEvent->int);
         static::assertEquals(150.9999, $jsonEvent->float);
         static::assertEquals(['key' => 'value'], $jsonEvent->array);
+        static::assertTrue($jsonEvent->hasSubtypes());
     }
 }
