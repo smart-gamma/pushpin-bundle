@@ -30,7 +30,6 @@ class GripEventsHandler
      */
     public function addHandler(AbstractEventHandler $handler, $subType = null)
     {
-
         $this->logger->info(sprintf(
             '%s: handler:%s, subtype:%s',
             __FUNCTION__, get_class($handler), $subType
