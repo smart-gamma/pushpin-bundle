@@ -29,6 +29,11 @@ services:
         tags:
             - { name: gamma.pushpin.grip_event_factory }
 
+    gamma.pushpin.grip.close_events_factory:
+        class: Gamma\Pushpin\PushpinBundle\Services\Factories\CloseEventFactory
+        tags:
+            - { name: gamma.pushpin.grip_event_factory }
+
     gamma.pushpin.converter.web_socket_events:
         class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\WebSocketEventsConverter
         arguments:
