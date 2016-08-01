@@ -9,12 +9,12 @@ abstract class AbstractJsonEvent extends AbstractTextEvent
     /**
      * @var string
      */
-    private $json;
+    protected $json;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * {@inheritdoc}
