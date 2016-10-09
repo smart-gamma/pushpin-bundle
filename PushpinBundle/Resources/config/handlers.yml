@@ -6,7 +6,7 @@ services:
     gamma.pushpin.grip.events_handler:
         class: Gamma\Pushpin\PushpinBundle\Services\GripEventsHandler
         arguments:
-            logger: @logger
+            logger: "@logger"
         tags:
             - { name: monolog.logger, channel: websocket }
 
