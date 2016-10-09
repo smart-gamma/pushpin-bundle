@@ -2,6 +2,7 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Services;
 
+use Gamma\Pushpin\PushpinBundle\DTO\WebSocketEventsDTO;
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractEvent;
 use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractSubTypedEvent;
 use Gamma\Pushpin\PushpinBundle\Handlers\Base\AbstractEventHandler;
@@ -52,6 +53,32 @@ class GripEventsHandler
         $handler = $this->resolveHandler($event);
 
         return $handler->handle($event);
+    }
+
+    /**
+     * @param WebSocketEventsDTO $events
+     *
+     * @return WebSocketEventsDTO
+     */
+    public function handleEvents(WebSocketEventsDTO $events)
+    {
+        $result = new WebSocketEventsDTO();
+
+        array_walk($events->webSocketEvents, function(AbstractEvent $event) use ($result) {
+            $handled = $this->handle($event);
+
+            if (is_array($handled)) {
+                $result->webSocketEvents = array_merge($result->webSocketEvents, $handled);
+            }
+            if ($handled instanceof  WebSocketEventsDTO) {
+                $result->webSocketEvents = array_merge($result->webSocketEvents, $handled->webSocketEvents);
+            }
+            if ($handled instanceof AbstractEvent) {
+                $result->webSocketEvents[] = $handled;
+            }
+        });
+
+        return $result;
     }
 
     /**
