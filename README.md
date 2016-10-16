@@ -152,7 +152,7 @@ class ChatController extends GripController
 }
 ```
 If everything is ok you should be able to connect to Pushpin's websocket port (7999 by default) with URL:
-```ws://localhost:7999/websocket/chat```
+`ws://localhost:7999/websocket/chat`
 
 You can test with [wscat](https://www.npmjs.com/package/wscat) utility:
 ```bash
