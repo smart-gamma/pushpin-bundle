@@ -180,7 +180,8 @@ By calling methods on ```gamma.pushpin.pushpin_helper``` you can:
  - publish to a channel ```sendWsMessageToChannel($channel, $message)```
  - unsubscribe from channel ```unSubscribeFromChannel($channel)```
  - detach connection ```detachConnection()```
-additional info on Pushpin control messages
+
+Here is [additional info on Pushpin](http://pushpin.org/docs/#websockets)
 
 Example of working application
 ------------
