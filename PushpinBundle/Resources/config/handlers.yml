@@ -1,6 +1,7 @@
 parameters:
     pushpin_open_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\OpenEventHandler
     pushpin_close_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\CloseEventHandler
+    pushpin_disconnect_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\DisconnectEventHandler
 
 services:
     gamma.pushpin.grip.events_handler:
@@ -17,5 +18,10 @@ services:
 
     gamma.pushpin.event_handler.close:
         class: %pushpin_close_handler_class%
+        tags:
+          -  { name: gamma.pushpin.grip_event_handler }
+
+    gamma.pushpin.event_handler.disconnect:
+        class: %pushpin_disconnect_handler_class%
         tags:
           -  { name: gamma.pushpin.grip_event_handler }
