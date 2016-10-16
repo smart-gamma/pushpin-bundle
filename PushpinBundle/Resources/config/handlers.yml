@@ -1,0 +1,27 @@
+parameters:
+    pushpin_open_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\OpenEventHandler
+    pushpin_close_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\CloseEventHandler
+    pushpin_disconnect_handler_class: Gamma\Pushpin\PushpinBundle\Services\Handlers\DisconnectEventHandler
+
+services:
+    gamma.pushpin.grip.events_handler:
+        class: Gamma\Pushpin\PushpinBundle\Services\GripEventsHandler
+        arguments:
+            logger: "@logger"
+        tags:
+            - { name: monolog.logger, channel: websocket }
+
+    gamma.pushpin.event_handler.open:
+        class: %pushpin_open_handler_class%
+        tags:
+          -  { name: gamma.pushpin.grip_event_handler }
+
+    gamma.pushpin.event_handler.close:
+        class: %pushpin_close_handler_class%
+        tags:
+          -  { name: gamma.pushpin.grip_event_handler }
+
+    gamma.pushpin.event_handler.disconnect:
+        class: %pushpin_disconnect_handler_class%
+        tags:
+          -  { name: gamma.pushpin.grip_event_handler }

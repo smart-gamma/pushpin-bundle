@@ -27,7 +27,22 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('control_uri')->end()
                     ->end()
                 ->end()
-            ->end()
+                ->arrayNode('web_socket')
+                    ->children()
+                        ->arrayNode('json_events')
+                            ->children()
+                                ->scalarNode('base_namespace')->end()
+                                ->arrayNode('mappings')
+                                    ->prototype('array')
+                                        ->children()
+                                            ->scalarNode('class')->end()
+                                            ->scalarNode('event')->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
         ;
 
         return $treeBuilder;

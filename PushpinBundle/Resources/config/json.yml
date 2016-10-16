@@ -1,0 +1,21 @@
+parameters:
+    json_event_parser_class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventParser
+
+services:
+    gamma.pushpin.json_event_serializer:
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventSerializer
+        public: false
+
+    gamma.pushpin.json_event_parser:
+        class: %json_event_parser_class%
+        public: false
+
+    gamma.pushpin.json_event_factory:
+        class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory
+        public: false
+        arguments:
+            parser: "@gamma.pushpin.json_event_parser"
+            serializer: "@gamma.pushpin.json_event_serializer"
+            logger: "@logger"
+        tags:
+            - { name: monolog.logger, channel: websocket }

@@ -12,5 +12,5 @@ class WebSocketEventsDTO
     /**
      * @var array
      */
-    public $webSocketEvents;
+    public $webSocketEvents = [];
 }

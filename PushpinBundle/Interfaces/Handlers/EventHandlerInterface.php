@@ -2,26 +2,26 @@
 
 namespace Gamma\Pushpin\PushpinBundle\Interfaces\Handlers;
 
-use GripControl\WebSocketEvent;
+use Gamma\Pushpin\PushpinBundle\Events\Base\AbstractEvent;
 
 interface EventHandlerInterface
 {
     /**
-     * @param WebSocketEvent $webSocketEvent
+     * @param AbstractEvent $event
      *
-     * @return WebSocketEvent
+     * @return mixed
      */
-    public function handle(WebSocketEvent $webSocketEvent);
+    public function handle(AbstractEvent $event);
 
     /**
      * @return string
      */
-    public function getEventName();
+    public function getEventType();
 
     /**
-     * @param WebSocketEvent $webSocketEvent
+     * @param AbstractEvent $event
      *
-     * @return bool
+     * @return mixed
      */
-    public static function eventSupported(WebSocketEvent $webSocketEvent);
+    public function eventSupported(AbstractEvent $event);
 }
