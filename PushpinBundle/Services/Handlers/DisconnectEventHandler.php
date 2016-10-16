@@ -7,7 +7,7 @@ use Gamma\Pushpin\PushpinBundle\Handlers\Base\AbstractEventHandler;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\DisconnectEventInterface;
 use Gamma\Pushpin\PushpinBundle\Interfaces\Events\OpenEventInterface;
 
-class OpenEventHandler extends AbstractEventHandler
+class DisconnectEventHandler extends AbstractEventHandler
 {
     const EVENT_TYPE = DisconnectEventInterface::EVENT_TYPE;
 
