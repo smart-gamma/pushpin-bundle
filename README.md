@@ -1,4 +1,5 @@
 # GammaPushpinBundle
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c8f9b749-8f97-4adb-b3af-81487fa9366a/mini.png)](https://insight.sensiolabs.com/projects/c8f9b749-8f97-4adb-b3af-81487fa9366a)
 [![Build Status](https://travis-ci.org/smart-gamma/pushpin-bundle.svg?branch=master)](https://travis-ci.org/smart-gamma/pushpin-bundle)
 
 Symfony Bundle that helps you to add a realtime features to your applications using [Pushpin](http://pushpin.org/) reverse proxy. Integrates [php-gripcontrol](https://github.com/fanout/php-gripcontrol) library.
