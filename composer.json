@@ -1,6 +1,6 @@
 {
     "name": "gamma/pushpin-bundle",
-    "description": "Pushpin proxy integration for Symfony 2 applications",
+    "description": "Pushpin proxy integration for Symfony applications",
     "type" : "symfony-bundle",
     "require": {
         "fanout/gripcontrol": "^2.0",
