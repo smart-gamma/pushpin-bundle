@@ -172,7 +172,7 @@ This will call your handler and return a result back to a client.
 Working with channels
 ------------
 Pushpin works as a publish-subscribe service. So you have ability to subscribe clients to a specific channels and publish a messages to it.
-Anything that can ba a channel in your application should implement a ```WebSocketChannelInterface``` with one method ```getChannelName()```.
+Anything that can be a channel in your application should implement a ```WebSocketChannelInterface``` with one method ```getChannelName()```.
 To publish messages you can also use ```\PubControl\PubControl::publish```
 
 By calling methods on ```gamma.pushpin.pushpin_helper``` you can:
