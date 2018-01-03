@@ -14,8 +14,8 @@ services:
         class: Gamma\Pushpin\PushpinBundle\Services\Events\Json\EventFactory
         public: false
         arguments:
-            parser: "@gamma.pushpin.json_event_parser"
-            serializer: "@gamma.pushpin.json_event_serializer"
-            logger: "@logger"
+            - "@gamma.pushpin.json_event_parser"
+            - "@gamma.pushpin.json_event_serializer"
+            - "@logger"
         tags:
             - { name: monolog.logger, channel: websocket }

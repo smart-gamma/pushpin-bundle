@@ -3,9 +3,11 @@
     "description": "Pushpin proxy integration for Symfony applications",
     "type" : "symfony-bundle",
     "require": {
+        "ext-curl": "*",
         "fanout/gripcontrol": "^2.0",
-        "symfony/framework-bundle": "~2.3|~3.0",
-        "jms/serializer": "^1.1@dev"
+        "symfony/framework-bundle": "~2.3|~3.4",
+        "jms/serializer": "^1.1@dev",
+        "sensio/framework-extra-bundle": "^5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7"
@@ -17,14 +19,14 @@
     "authors": [
         {
             "name": "Stas Zozulja",
-            "email": "stas.z@smart-gamma.com"
+            "email": "stas.zozulja@gmail.com"
         }
     ],
     "autoload": {
         "psr-0": { "Gamma\\Pushpin": "" }
     },
     "target-dir": "Gamma/Pushpin",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra" : {
         "branch-alias" : {
             "dev-master": "0.1-dev",
