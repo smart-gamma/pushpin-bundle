@@ -10,14 +10,14 @@ services:
     gamma.pushpin.grip.events_factory:
         class: Gamma\Pushpin\PushpinBundle\Services\GripEventsFactory
         arguments:
-            logger: "@logger"
+            - "@logger"
         tags:
             - { name: monolog.logger, channel: websocket }
 
     gamma.pushpin.grip.text_event_factory:
         class: Gamma\Pushpin\PushpinBundle\Services\Factories\TextEventFactory
         arguments:
-            logger: "@logger"
+            - "@logger"
         calls:
             - [addFactory, ["@gamma.pushpin.json_event_factory"]]
         tags:
@@ -42,6 +42,6 @@ services:
     gamma.pushpin.converter.web_socket_events:
         class: Gamma\Pushpin\PushpinBundle\Request\ParamConverter\WebSocketEventsConverter
         arguments:
-            factory: "@gamma.pushpin.grip.events_factory"
+            - "@gamma.pushpin.grip.events_factory"
         tags:
             - { name: request.param_converter, priority: 2, converter: gamma.web_socket.events }
